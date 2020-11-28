@@ -75,7 +75,7 @@ class _CalendarState extends State<Calendar> {
             color: Color.fromRGBO(59, 57, 60, 1),
             fontSize: 18,
             fontWeight: FontWeight.normal),
-        labelText: 'How are you felling today?',
+        labelText: 'How are you feeling today?',
       ),
       onChanged: (value) {
         _name = value;
