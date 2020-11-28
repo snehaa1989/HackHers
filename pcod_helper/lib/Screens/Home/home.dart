@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pcod_helper/Services/auth.dart';
-
+import 'package:pcod_helper/Screens/Period_Tracker/Starter.dart';
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -97,7 +97,12 @@ class _HomeState extends State<Home> {
                         elevation: 10,
                         child: RaisedButton(
                         color: Colors.white,
-                        onPressed: (){},
+                        onPressed: (){
+                         Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => Tracker()),
+                         );
+                        },
                         child: Container(
                             width:  MediaQuery.of(context).size.width * 1/3,
                             height: MediaQuery.of(context).size.height/4,
