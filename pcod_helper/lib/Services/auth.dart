@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pcod_helper/Services/Database.dart';
 import 'package:pcod_helper/models/Usermodel.dart';
 import 'dart:async';
 
@@ -18,8 +19,7 @@ class Auth{
   Future SignInAnon() async{
     try {
       AuthResult result = await _auth.signInAnonymously();
-      FirebaseUser user = result.user;
-      return _UserFromFirebase(user) ;
+
     }
     catch(e){
       print(e.toString());
@@ -34,4 +34,28 @@ class Auth{
       return null;
     }
   }
+
+  Future registerWithEmail(String email, String Password) async{
+   try{
+     AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: Password);
+     FirebaseUser user = result.user;
+     await DataBaseService(uid: user.uid).UpdateUserData(0, false, false, false, false, false, false, false);
+     return _UserFromFirebase(user) ;
+   }
+   catch(e){
+     print(e);
+   }
+  }
+  Future SignInWithEmail(String email, String Password) async{
+    try{
+      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: Password);
+      FirebaseUser user = result.user;
+      return _UserFromFirebase(user) ;
+    }
+    catch(e){
+      print(e);
+    }
+  }
 }
+
+

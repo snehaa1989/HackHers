@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pcod_helper/Screens/Authentication/SignIn.dart';
+import 'package:pcod_helper/Screens/Authentication/Signup.dart';
 
 class Authentiacte extends StatefulWidget {
   @override
@@ -9,7 +10,18 @@ class Authentiacte extends StatefulWidget {
 
 class _AuthentiacteState extends State<Authentiacte> {
   @override
+  bool showSignIn = false;
+  void toggle(){
+    setState(() {
+      showSignIn = !showSignIn;
+    });
+  }
   Widget build(BuildContext context) {
-    return SignIn();
+    if(showSignIn){
+      return SignIn(toggle: toggle,);
+    }
+    else{
+      return SignUp(toggle: toggle,);
+    }
   }
 }
